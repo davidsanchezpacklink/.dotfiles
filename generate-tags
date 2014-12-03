@@ -1,0 +1,17 @@
+#!/bin/sh -ex
+cd /var/www/packlink-core
+
+ctags -f ~/tags \
+-h ".php" -R \
+--exclude="\.svn" \
+--exclude="\www/scripts/vendors" \
+--exclude="\www/assets" \
+--exclude="\www/js" \
+--exclude="*.js" \
+--totals=yes \
+--tag-relative=yes \
+--PHP-kinds=+cf \
+--regex-PHP='/abstract class ([^ ]*)/\1/c/' \
+--regex-PHP='/interface ([^ ]*)/\1/c/' \
+--regex-PHP='/trait[ \t]+([a-z0_9_]+)/\1/t,traits/' \
+--regex-PHP='/(public |static |abstract |protected |private )+function ([^ (]*)/\2/f/'
